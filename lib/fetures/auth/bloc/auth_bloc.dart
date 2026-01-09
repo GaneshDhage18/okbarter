@@ -5,9 +5,18 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  AuthBloc() : super(const PasswordVisibilytyState(obsecure: true)) {
+    on<TogglePasswordVisibiltyEvent>(_toggleVisibility);
+  }
+
+  void _toggleVisibility(
+    TogglePasswordVisibiltyEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    final currentState = state;
+
+    if (currentState is PasswordVisibilytyState) {
+      emit(PasswordVisibilytyState(obsecure: !currentState.obsecure));
+    }
   }
 }

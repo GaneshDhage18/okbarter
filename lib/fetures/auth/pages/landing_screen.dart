@@ -90,7 +90,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   ),
 
                   /// Skip Button (ON TOP)
-                  if (currentIndex != onboardingData.length - 1)
+                  if (currentIndex != onboardingData.length)
                     Positioned(
                       top: 68.h,
                       right: 24.w,

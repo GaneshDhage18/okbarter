@@ -5,5 +5,6 @@ class Colours {
   static Color background = Color(0xffF8F8F8);
   static Color landingColor1 = Color(0xffFFC55C);
   static Color textGrey = Color(0xff424242);
+  static Color appGrey = Color(0xff616161);
   static Color landingColor2 = Colors.white;
 }

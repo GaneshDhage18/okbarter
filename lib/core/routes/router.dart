@@ -6,6 +6,7 @@ import 'package:ok_barter/fetures/auth/pages/splash_screen.dart';
 enum Routes { splashScreen, landingScreen, signUpScreen }
 
 GoRouter goRouter = GoRouter(
+  initialLocation: "/SignupScreen",
   routes: [
     GoRoute(
       path: "/",
