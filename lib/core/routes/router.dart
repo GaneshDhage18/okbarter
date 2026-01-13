@@ -1,27 +1,116 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ok_barter/fetures/auth/pages/landing_screen.dart';
+import 'package:ok_barter/fetures/auth/pages/otp_verification_screen.dart';
+import 'package:ok_barter/fetures/auth/pages/sign_in_screen.dart';
 import 'package:ok_barter/fetures/auth/pages/signup_screen.dart';
 import 'package:ok_barter/fetures/auth/pages/splash_screen.dart';
 
-enum Routes { splashScreen, landingScreen, signUpScreen }
+enum Routes {
+  splashScreen,
+  landingScreen,
+  signUpScreen,
+  otpVerificationScreen,
+  signInScreen,
+}
 
 GoRouter goRouter = GoRouter(
-  initialLocation: "/SignupScreen",
+  // initialLocation: "/SignupScreen",
   routes: [
     GoRoute(
       path: "/",
       name: Routes.splashScreen.name,
-      builder: (context, state) => SplashScreen(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: SplashScreen(),
+        transitionsBuilder: _fadeTransition,
+      ),
     ),
     GoRoute(
       path: "/landingScreen",
       name: Routes.landingScreen.name,
-      builder: (context, state) => LandingScreen(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: LandingScreen(),
+        transitionsBuilder: rotationFadeTransition,
+      ),
     ),
     GoRoute(
       path: "/SignupScreen",
       name: Routes.signUpScreen.name,
-      builder: (context, state) => SignupScreen(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: SignupScreen(),
+        transitionsBuilder: rotationFadeTransition,
+      ),
+      routes: [
+        GoRoute(
+          path: "signInScreen",
+          name: Routes.signInScreen.name,
+          pageBuilder: (context, state) => CustomTransitionPage(
+            key: state.pageKey,
+            child: SignInScreen(),
+            transitionsBuilder: rotationFadeTransition,
+          ),
+        ),
+      ],
+    ),
+    GoRoute(
+      path: "/OtpVerificationScreen",
+      name: Routes.otpVerificationScreen.name,
+      pageBuilder: (context, state) {
+        final email = state.extra as String;
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: OtpVerificationScreen(email: email),
+          transitionsBuilder: _slideTransition,
+        );
+      },
     ),
   ],
 );
+
+/// ================= FADE TRANSITION =================
+Widget _fadeTransition(
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
+  return FadeTransition(opacity: animation, child: child);
+}
+
+/// ================= SLIDE TRANSITION =================
+Widget _slideTransition(
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
+  final tween = Tween<Offset>(
+    begin: const Offset(1, 0),
+    end: Offset.zero,
+  ).chain(CurveTween(curve: Curves.easeInOut));
+  return SlideTransition(position: animation.drive(tween), child: child);
+}
+
+Widget rotationFadeTransition(
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
+  final rotate = Tween<double>(
+    begin: 0.2,
+    end: 0.0,
+  ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOut));
+  final fade = Tween<double>(
+    begin: 0.0,
+    end: 1.0,
+  ).animate(CurvedAnimation(parent: animation, curve: Curves.easeIn));
+
+  return FadeTransition(
+    opacity: fade,
+    child: RotationTransition(turns: rotate, child: child),
+  );
+}

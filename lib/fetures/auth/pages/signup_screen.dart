@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ok_barter/core/const/colours.dart';
 import 'package:ok_barter/core/const/fonts.dart';
+import 'package:ok_barter/core/const/urls.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
+import 'package:ok_barter/core/routes/router.dart';
 import 'package:ok_barter/fetures/auth/bloc/auth_bloc.dart';
+import 'package:ok_barter/fetures/auth/componets/custome_textfield.dart';
+import 'package:ok_barter/fetures/auth/componets/validators.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
@@ -12,6 +17,7 @@ class SignupScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> formkey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -22,248 +28,243 @@ class SignupScreen extends StatelessWidget {
           child: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             reverse: true,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                20.heightBox,
+            child: GestureDetector(
+              onTap: () {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              child: Form(
+                key: formkey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    20.heightBox,
 
-                IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.arrow_back),
-                ),
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.arrow_back),
+                    ),
 
-                22.heightBox,
+                    22.heightBox,
 
-                Text(
-                  "Sign Up",
-                  style: TextStyle(
-                    fontSize: 28.sp,
-                    fontFamily: Fonts.sBold,
-                    color: const Color(0xff424242),
-                  ),
-                ),
+                    Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        fontSize: 28.sp,
+                        fontFamily: Fonts.sBold,
+                        color: const Color(0xff424242),
+                      ),
+                    ),
 
-                22.heightBox,
+                    22.heightBox,
 
-                Text(
-                  "Welcome! 👋",
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontFamily: Fonts.sMedium,
-                    color: Colours.textGrey,
-                  ),
-                ),
+                    Text(
+                      "Welcome! 👋",
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontFamily: Fonts.sMedium,
+                        color: Colours.textGrey,
+                      ),
+                    ),
 
-                12.heightBox,
+                    12.heightBox,
 
-                Text(
-                  "Please create an account below",
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontFamily: Fonts.sMedium,
-                    color: Colours.textGrey,
-                  ),
-                ),
+                    Text(
+                      "Please create an account below",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontFamily: Fonts.sMedium,
+                        color: Colours.textGrey,
+                      ),
+                    ),
 
-                39.heightBox,
+                    39.heightBox,
 
-                /// NAME
-                CustomTextField(
-                  controller: nameController,
-                  label: "Name",
-                  hintText: "Enter your name",
-                  prefixIcon: Icon(
-                    Icons.person,
-                    color: Colours.primary,
-                    size: 20.w,
-                  ),
-                ),
-
-                16.heightBox,
-
-                /// EMAIL
-                CustomTextField(
-                  controller: emailController,
-                  label: "Email",
-                  hintText: "Enter your email",
-                  keyboardType: TextInputType.emailAddress,
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: Colours.primary,
-                    size: 20.w,
-                  ),
-                ),
-
-                16.heightBox,
-
-                /// PASSWORD (BLOC)
-                BlocBuilder<AuthBloc, AuthState>(
-                  buildWhen: (previous, current) =>
-                      current is PasswordVisibilytyState,
-                  builder: (context, state) {
-                    final isObsecure = state is PasswordVisibilytyState
-                        ? state.obsecure
-                        : true;
-
-                    return CustomTextField(
-                      controller: passwordController,
-                      label: "Password",
-                      hintText: "Enter your password",
-                      isObscure: isObsecure, // ✅ YOU MISSED THIS
+                    /// NAME
+                    CustomTextField(
+                      validator: Validators.name,
+                      controller: nameController,
+                      label: "Name",
+                      hintText: "Enter your name",
                       prefixIcon: Icon(
-                        Icons.lock,
+                        Icons.person,
                         color: Colours.primary,
                         size: 20.w,
                       ),
-                      suffixIcon: IconButton(
+                    ),
+
+                    16.heightBox,
+
+                    /// EMAIL
+                    CustomTextField(
+                      validator: Validators.email,
+                      controller: emailController,
+                      label: "Email",
+                      hintText: "Enter your email",
+                      keyboardType: TextInputType.emailAddress,
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: Colours.primary,
+                        size: 20.w,
+                      ),
+                    ),
+
+                    16.heightBox,
+
+                    /// PASSWORD (BLOC)
+                    BlocBuilder<AuthBloc, AuthState>(
+                      buildWhen: (previous, current) =>
+                          current is PasswordVisibilytyState,
+                      builder: (context, state) {
+                        final isObsecure = state is PasswordVisibilytyState
+                            ? state.obsecure
+                            : true;
+
+                        return CustomTextField(
+                          validator: Validators.password,
+                          controller: passwordController,
+                          label: "Password",
+                          hintText: "Enter your password",
+                          isObscure: isObsecure, // ✅ YOU MISSED THIS
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colours.primary,
+                            size: 20.w,
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              context.read<AuthBloc>().add(
+                                TogglePasswordVisibiltyEvent(),
+                              );
+                            },
+                            icon: Icon(
+                              isObsecure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colours.primary,
+                              size: 20.w,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    34.heightBox,
+                    SizedBox(
+                      width: double.infinity,
+                      height: 58.h,
+
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadiusGeometry.circular(16.r),
+                          ),
+
+                          backgroundColor: Colours.primary,
+                        ),
                         onPressed: () {
-                          context.read<AuthBloc>().add(
-                            TogglePasswordVisibiltyEvent(),
-                          );
+                          if (formkey.currentState!.validate()) {
+                            final email = emailController.text.trim();
+                            goRouter.goNamed(
+                              Routes.otpVerificationScreen.name,
+                              extra: email,
+                            ); // 👈 your next screen route
+                          }
                         },
-                        icon: Icon(
-                          isObsecure ? Icons.visibility_off : Icons.visibility,
-                          color: Colours.primary,
-                          size: 20.w,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                34.heightBox,
-                SizedBox(
-                  width: double.infinity,
-                  height: 58.h,
-
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(16.r),
-                      ),
-
-                      backgroundColor: Colours.primary,
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      "Sign up",
-                      style: TextStyle(
-                        fontFamily: Fonts.sBold,
-                        fontSize: 16.sp,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                29.heightBox,
-
-                Row(
-                  children: [
-                    Expanded(
-                      child: Divider(color: Colours.appGrey.withOpacity(0.20)),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Text(
-                        "or",
-                        style: TextStyle(
-                          fontFamily: Fonts.sBold,
-                          fontSize: 18.sp,
-                          color: Colours.appGrey,
+                        child: Text(
+                          "Sign up",
+                          style: TextStyle(
+                            fontFamily: Fonts.sBold,
+                            fontSize: 16.sp,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Divider(color: Colours.appGrey.withOpacity(0.20)),
+                    29.heightBox,
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            color: Colours.appGrey.withOpacity(0.20),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: Text(
+                            "or",
+                            style: TextStyle(
+                              fontFamily: Fonts.sBold,
+                              fontSize: 18.sp,
+                              color: Colours.appGrey,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            color: Colours.appGrey.withOpacity(0.20),
+                          ),
+                        ),
+                      ],
                     ),
+                    20.heightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Already have an account?",
+                          style: TextStyle(
+                            fontFamily: Fonts.sRegular,
+                            fontSize: 14.sp,
+                            color: Color(0xff9E9E9E),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            goRouter.goNamed(Routes.signInScreen.name);
+                          },
+                          child: Text(
+                            "Sign in",
+                            style: TextStyle(
+                              fontFamily: Fonts.sSemiBold,
+                              fontSize: 14.sp,
+                              color: Color(0xff476AB0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    37.heightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.googleLogo,
+                          height: 24.w,
+                          width: 24.w,
+                        ),
+                        45.widthBox,
+                        SvgPicture.asset(
+                          Assets.facebookLogo,
+                          height: 24.w,
+                          width: 24.w,
+                        ),
+                        45.widthBox,
+
+                        SvgPicture.asset(
+                          Assets.appleLogo,
+                          height: 24.w,
+                          width: 24.w,
+                        ),
+                      ],
+                    ),
+                    Padding(padding: EdgeInsetsGeometry.only(bottom: 50)),
                   ],
                 ),
-                20.heightBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Already have an account?",
-                      style: TextStyle(
-                        fontFamily: Fonts.sRegular,
-                        fontSize: 14.sp,
-                        color: Color(0xff9E9E9E),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Sign in",
-                        style: TextStyle(
-                          fontFamily: Fonts.sSemiBold,
-                          fontSize: 14.sp,
-                          color: Color(0xff476AB0),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.controller,
-    required this.label,
-    required this.hintText,
-    this.isObscure = false,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.keyboardType = TextInputType.text,
-  });
-
-  final TextEditingController controller;
-  final String label;
-  final String hintText;
-  final bool isObscure;
-  final Icon? prefixIcon;
-  final IconButton? suffixIcon;
-  final TextInputType keyboardType;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(fontFamily: Fonts.sBold, fontSize: 16.sp),
-        ),
-        12.heightBox,
-        TextField(
-          controller: controller,
-          obscureText: isObscure,
-          obscuringCharacter: '*',
-          keyboardType: keyboardType,
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: TextStyle(fontFamily: Fonts.sMedium, fontSize: 14.sp),
-            prefixIcon: prefixIcon,
-            suffixIcon: suffixIcon,
-            border: _border(),
-            focusedBorder: _border(),
-            enabledBorder: _border(),
-          ),
-        ),
-      ],
-    );
-  }
-
-  OutlineInputBorder _border() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16.r),
-      borderSide: BorderSide(color: Colours.primary),
     );
   }
 }

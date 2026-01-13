@@ -4,20 +4,37 @@ sealed class AuthState extends Equatable {
   const AuthState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
+
+/// ================= INITIAL =================
 
 final class AuthInitial extends AuthState {}
 
-///=================== PASSWORD TOGGLE LOGIC STATE=====================///
+/// ================= PASSWORD VISIBILITY =================
 
 class PasswordVisibilytyState extends AuthState {
   final bool obsecure;
 
   const PasswordVisibilytyState({required this.obsecure});
+
   @override
-  // TODO: implement props
-  List<Object> get props => [obsecure];
+  List<Object?> get props => [obsecure];
 }
 
-///=================== PASSWORD TOGGLE LOGIC STATE=====================///
+/// ================= OTP TIMER =================
+
+class OtpTimerRunning extends AuthState {
+  final int secondsLeft;
+
+  const OtpTimerRunning(this.secondsLeft);
+
+  @override
+  List<Object?> get props => [secondsLeft];
+}
+
+class OtpTimerCompleted extends AuthState {}
+
+/// ================= OTP RESEND =================
+
+class OtpResentSuccess extends AuthState {}

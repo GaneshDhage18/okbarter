@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ok_barter/core/const/colours.dart';
+import 'package:ok_barter/core/const/fonts.dart';
+import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
+import 'package:ok_barter/fetures/auth/componets/validators.dart';
+
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
+    super.key,
+    required this.controller,
+    required this.label,
+    required this.hintText,
+    this.isObscure = false,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.keyboardType = TextInputType.text,
+    this.validator,
+  });
+
+  final TextEditingController controller;
+  final String label;
+  final String hintText;
+  final bool isObscure;
+  final Icon? prefixIcon;
+  final IconButton? suffixIcon;
+  final TextInputType keyboardType;
+  final String? Function(String?)? validator;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(fontFamily: Fonts.sBold, fontSize: 16.sp),
+        ),
+        12.heightBox,
+        TextFormField(
+          validator: validator,
+          controller: controller,
+          obscureText: isObscure,
+          obscuringCharacter: '*',
+          keyboardType: keyboardType,
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: TextStyle(fontFamily: Fonts.sMedium, fontSize: 14.sp),
+            prefixIcon: prefixIcon,
+            suffixIcon: suffixIcon,
+            border: _border(),
+            focusedBorder: _border(),
+            enabledBorder: _border(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  OutlineInputBorder _border() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+      borderSide: BorderSide(color: Colours.primary),
+    );
+  }
+}
