@@ -126,7 +126,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("OTP resent successfully"),
-                          backgroundColor: Colors.lightGreenAccent,
+                          backgroundColor: Colors.green,
                         ),
                       );
                     }
