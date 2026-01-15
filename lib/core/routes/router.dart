@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ok_barter/fetures/Account/pages/Account_screen.dart';
+import 'package:ok_barter/fetures/Account/pages/help_and_support_screen.dart';
+import 'package:ok_barter/fetures/Account/pages/settings_screen.dart';
+import 'package:ok_barter/fetures/Account/pages/wishlis_screen.dart';
 import 'package:ok_barter/fetures/auth/pages/landing_screen.dart';
 import 'package:ok_barter/fetures/auth/pages/otp_verification_screen.dart';
 import 'package:ok_barter/fetures/auth/pages/sign_in_screen.dart';
@@ -12,10 +16,14 @@ enum Routes {
   signUpScreen,
   otpVerificationScreen,
   signInScreen,
+  accountScreen,
+  helpandsupportScreen,
+  wishListScreen,
+  settingsScreen,
 }
 
 GoRouter goRouter = GoRouter(
-  // initialLocation: "/SignupScreen",
+  initialLocation: "/AccountScreen",
   routes: [
     GoRoute(
       path: "/",
@@ -66,6 +74,44 @@ GoRouter goRouter = GoRouter(
           transitionsBuilder: _slideTransition,
         );
       },
+    ),
+    GoRoute(
+      path: "/AccountScreen",
+      name: Routes.accountScreen.name,
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: AccountScreen(),
+        transitionsBuilder: rotationFadeTransition,
+      ),
+      routes: [
+        GoRoute(
+          path: "helpandsupportscreen",
+          name: Routes.helpandsupportScreen.name,
+          pageBuilder: (context, state) => CustomTransitionPage(
+            key: state.pageKey,
+            child: HelpAndSupportScreen(),
+            transitionsBuilder: rotationFadeTransition,
+          ),
+        ),
+        GoRoute(
+          path: "WishListScreen",
+          name: Routes.wishListScreen.name,
+          pageBuilder: (context, state) => CustomTransitionPage(
+            key: state.pageKey,
+            child: WishlistScreen(),
+            transitionsBuilder: rotationFadeTransition,
+          ),
+        ),
+        GoRoute(
+          path: "settingsScreen",
+          name: Routes.settingsScreen.name,
+          pageBuilder: (context, state) => CustomTransitionPage(
+            key: state.pageKey,
+            child: SettingsScreen(),
+            transitionsBuilder: rotationFadeTransition,
+          ),
+        ),
+      ],
     ),
   ],
 );
