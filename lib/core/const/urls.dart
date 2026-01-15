@@ -5,4 +5,6 @@ class Assets {
   static String igTurnOnLocationIcon = "assets/images/turnOnLocationIcon.png";
   static String icSearchIcon = "assets/icons/Search.svg";
   static String icCurrentLocation = "assets/icons/currentLocation.svg";
+  static String icUpArrow = "assets/icons/up_arow.svg";
+  static String icDownArrow = "assets/icons/down_arrow.svg";
 }

@@ -110,9 +110,8 @@ class _ConfirmLocationScreenState extends State<ConfirmLocationScreen> {
                   height: 58.h,
                   child: filledButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        goRouter.pop();
-                      }
+                      goRouter.goNamed(Routes.messagesScreen.name);
+                      if (_formKey.currentState!.validate()) {}
                     },
                     title: 'Save address',
                   ),
