@@ -5,7 +5,8 @@ class Colours {
   static Color secondary = Color(0xff66B9DF);
   static Color white = Color(0xffFFFFFF);
   static Color black = Color(0xff000000);
-  static Color grey100 = Color(0xffA6A6A6);
+  static Color grey100 = Color(0xffF6F6F6);
+  static Color grey400 = Color(0xffA6A6A6);
   static Color grey900 = Color(0xff212121);
   static Color whiteFFFCFC = Color(0xffFFFCFC);
   static Color whiteEEF4FF = Color(0xffEEF4FF);

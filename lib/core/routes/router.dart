@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ok_barter/fetures/chat/pages/chat_screen.dart';
 import 'package:ok_barter/fetures/location/pages/confirm_location_screen.dart';
 import 'package:ok_barter/fetures/location/pages/location_screen.dart';
 import 'package:ok_barter/fetures/messages/bloc/messages_bloc.dart';
@@ -10,13 +11,14 @@ enum Routes {
   locationScreen,
   confirmLocationScreen,
   messagesScreen,
+  chatScreen,
 }
 
 GoRouter goRouter = GoRouter(
-  initialLocation: '/messagesScreen',
+  initialLocation: '/',
   routes: [
     GoRoute(
-      path: "/locationScreen",
+      path: "/",
       name: Routes.locationScreen.name,
       builder: (context, state) => LocationScreen(),
     ),
@@ -32,6 +34,11 @@ GoRouter goRouter = GoRouter(
         create: (context) => MessagesBloc(),
         child: MessagesScreen(),
       ),
+    ),
+    GoRoute(
+      path: "/chatScreen",
+      name: Routes.chatScreen.name,
+      builder: (context, state) => ChatScreen(),
     ),
   ],
 );

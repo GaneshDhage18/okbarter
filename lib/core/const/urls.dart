@@ -7,4 +7,5 @@ class Assets {
   static String icCurrentLocation = "assets/icons/currentLocation.svg";
   static String icUpArrow = "assets/icons/up_arow.svg";
   static String icDownArrow = "assets/icons/down_arrow.svg";
+  static String icTradeIcon = "assets/icons/tradeIcon.svg";
 }

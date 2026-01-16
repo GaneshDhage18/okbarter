@@ -8,6 +8,7 @@ import 'package:ok_barter/core/const/fonts.dart';
 import 'package:ok_barter/core/const/list.dart';
 import 'package:ok_barter/core/const/urls.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
+import 'package:ok_barter/core/routes/router.dart';
 import 'package:ok_barter/fetures/messages/bloc/messages_bloc.dart';
 import 'package:ok_barter/fetures/messages/components/custom_app_bar.dart';
 
@@ -76,7 +77,12 @@ class MessagesScreen extends StatelessWidget {
                 padding: EdgeInsets.only(top: 24.h),
                 itemBuilder: (context, index) => Column(
                   children: [
-                    TradesCard(),
+                    GestureDetector(
+                      onTap: () {
+                        goRouter.pushNamed(Routes.chatScreen.name);
+                      },
+                      child: TradesCard(),
+                    ),
                     8.heightBox,
                     Divider(color: Colours.grey100.withOpacity(0.13)),
                     16.heightBox,
