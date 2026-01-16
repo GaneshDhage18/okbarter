@@ -9,6 +9,9 @@ import 'package:ok_barter/fetures/auth/pages/otp_verification_screen.dart';
 import 'package:ok_barter/fetures/auth/pages/sign_in_screen.dart';
 import 'package:ok_barter/fetures/auth/pages/signup_screen.dart';
 import 'package:ok_barter/fetures/auth/pages/splash_screen.dart';
+import 'package:ok_barter/fetures/bottomNavigationBar/pages/bottomNavigationBar_screen.dart';
+import 'package:ok_barter/fetures/bottomNavigationBar/pages/home_screen.dart';
+import 'package:ok_barter/fetures/bottomNavigationBar/pages/profile_screen.dart';
 
 enum Routes {
   splashScreen,
@@ -20,10 +23,12 @@ enum Routes {
   helpandsupportScreen,
   wishListScreen,
   settingsScreen,
+  homeScreen,
+  profileScreen,
 }
 
 GoRouter goRouter = GoRouter(
-  initialLocation: "/AccountScreen",
+  initialLocation: "/home",
   routes: [
     GoRoute(
       path: "/",
@@ -110,6 +115,22 @@ GoRouter goRouter = GoRouter(
             child: SettingsScreen(),
             transitionsBuilder: rotationFadeTransition,
           ),
+        ),
+      ],
+    ),
+    ShellRoute(
+      builder: (context, state, child) =>
+          BottomNavigationBarScreen(child: child),
+      routes: [
+        GoRoute(
+          path: "/home",
+          name: Routes.homeScreen.name,
+          builder: (context, state) => HomeScreen(),
+        ),
+        GoRoute(
+          path: "/profile",
+          name: Routes.profileScreen.name,
+          builder: (context, state) => ProfileScreen(),
         ),
       ],
     ),
