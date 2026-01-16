@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ok_barter/core/const/colours.dart';
 import 'package:ok_barter/core/const/fonts.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
+import 'package:ok_barter/core/routes/router.dart';
 import 'package:ok_barter/fetures/instrest/List/list.dart';
 import 'package:ok_barter/fetures/instrest/bloc/instrest_bloc.dart';
 import 'package:ok_barter/fetures/instrest/bloc/instrest_state.dart';
+import 'package:ok_barter/fetures/instrest/components/componets.dart';
 
 class InstrestScreen extends StatelessWidget {
   const InstrestScreen({super.key});
@@ -16,11 +18,9 @@ class InstrestScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-        clipBehavior: Clip.none,
         children: [
-          Container(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
-            width: double.infinity,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,6 +34,8 @@ class InstrestScreen extends StatelessWidget {
                       fontFamily: Fonts.sSemiBold,
                     ),
                   ),
+
+                  /// ---------------- ELECTRONICS ----------------
                   25.heightBox,
                   Text(
                     "Electronics",
@@ -44,75 +46,31 @@ class InstrestScreen extends StatelessWidget {
                     ),
                   ),
                   25.heightBox,
+
                   BlocBuilder<InstrestBloc, InstrestState>(
                     builder: (context, state) {
-                      final selectedCategories =
-                          state is InstrestSelectionUpdated
+                      final selected = state is InstrestSelectionUpdated
                           ? state.selectedCategories
                           : <String>[];
 
                       return Wrap(
                         spacing: 23.w,
                         runSpacing: 14.h,
-                        children: List.generate(electronicIcons.length, (
+                        children: List.generate(electronicNames.length, (
                           index,
                         ) {
-                          final isSelected = selectedCategories.contains(
-                            electronicNames[index],
-                          );
+                          final category = electronicNames[index];
+                          final isSelected = selected.contains(category);
 
-                          return GestureDetector(
+                          return SelectableChip(
+                            icon: electronicIcons[index],
+                            title: category,
+                            isSelected: isSelected,
                             onTap: () {
                               context.read<InstrestBloc>().add(
-                                ChooseInstrestEvent(
-                                  category: electronicNames[index],
-                                ),
+                                ChooseInstrestEvent(category: category),
                               );
                             },
-                            child: Container(
-                              constraints: BoxConstraints(
-                                minWidth: 111.w,
-                                minHeight: 42.h,
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 14.w,
-                                vertical: 6.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: isSelected
-                                    ? Colours.primary.withOpacity(0.15)
-                                    : Colors.white,
-                                borderRadius: BorderRadius.circular(10.r),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? Colours.primary
-                                      : Colours.blue7BD3FC.withOpacity(0.25),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    electronicIcons[index],
-                                    size: 20.sp,
-                                    color: isSelected
-                                        ? Colours.primary
-                                        : Colours.black6C6C6A,
-                                  ),
-                                  8.widthBox,
-                                  Text(
-                                    electronicNames[index],
-                                    style: TextStyle(
-                                      color: isSelected
-                                          ? Colours.primary
-                                          : Colours.black424242,
-                                      fontSize: 14.sp,
-                                      fontFamily: Fonts.sRegular,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                           );
                         }),
                       );
@@ -128,10 +86,10 @@ class InstrestScreen extends StatelessWidget {
                     ),
                   ),
                   25.heightBox,
+
                   BlocBuilder<InstrestBloc, InstrestState>(
                     builder: (context, state) {
-                      final selectedCategories =
-                          state is InstrestSelectionUpdated
+                      final selected = state is InstrestSelectionUpdated
                           ? state.selectedCategories
                           : <String>[];
 
@@ -141,70 +99,28 @@ class InstrestScreen extends StatelessWidget {
                         children: List.generate(homeApplianceIcons.length, (
                           index,
                         ) {
-                          final isSelected = selectedCategories.contains(
-                            homeApplianceNames[index],
-                          );
+                          final category = homeApplianceNames[index];
+                          final isSelected = selected.contains(category);
 
-                          return GestureDetector(
+                          return SelectableChip(
+                            icon: homeApplianceIcons[index],
+                            title: category,
+                            isSelected: isSelected,
                             onTap: () {
                               context.read<InstrestBloc>().add(
-                                ChooseInstrestEvent(
-                                  category: homeApplianceNames[index],
-                                ),
+                                ChooseInstrestEvent(category: category),
                               );
                             },
-                            child: Container(
-                              constraints: BoxConstraints(
-                                minWidth: 111.w,
-                                minHeight: 42.h,
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 14.w,
-                                vertical: 6.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: isSelected
-                                    ? Colours.primary.withOpacity(0.15)
-                                    : Colors.white,
-                                borderRadius: BorderRadius.circular(10.r),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? Colours.primary
-                                      : Colours.blue7BD3FC.withOpacity(0.25),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    homeApplianceIcons[index],
-                                    size: 20.sp,
-                                    color: isSelected
-                                        ? Colours.primary
-                                        : Colours.black6C6C6A,
-                                  ),
-                                  8.widthBox,
-                                  Text(
-                                    homeApplianceNames[index],
-                                    style: TextStyle(
-                                      color: isSelected
-                                          ? Colours.primary
-                                          : Colours.black424242,
-                                      fontSize: 14.sp,
-                                      fontFamily: Fonts.sRegular,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                           );
                         }),
                       );
                     },
                   ),
+
+                  /// ---------------- TOYS & GAMES ----------------
                   25.heightBox,
                   Text(
-                    "Toys and Games ",
+                    "Toys and Games",
                     style: TextStyle(
                       color: Colours.black616161,
                       fontSize: 18.sp,
@@ -212,10 +128,10 @@ class InstrestScreen extends StatelessWidget {
                     ),
                   ),
                   25.heightBox,
+
                   BlocBuilder<InstrestBloc, InstrestState>(
                     builder: (context, state) {
-                      final selectedCategories =
-                          state is InstrestSelectionUpdated
+                      final selected = state is InstrestSelectionUpdated
                           ? state.selectedCategories
                           : <String>[];
 
@@ -225,75 +141,33 @@ class InstrestScreen extends StatelessWidget {
                         children: List.generate(gamesAndToysNames.length, (
                           index,
                         ) {
-                          final isSelected = selectedCategories.contains(
-                            gamesAndToysNames[index],
-                          );
+                          final category = gamesAndToysNames[index];
+                          final isSelected = selected.contains(category);
 
-                          return GestureDetector(
+                          return SelectableChip(
+                            icon: gamesAndToysIcons[index],
+                            title: category,
+                            isSelected: isSelected,
                             onTap: () {
                               context.read<InstrestBloc>().add(
-                                ChooseInstrestEvent(
-                                  category: gamesAndToysNames[index],
-                                ),
+                                ChooseInstrestEvent(category: category),
                               );
                             },
-                            child: Container(
-                              constraints: BoxConstraints(
-                                minWidth: 111.w,
-                                minHeight: 42.h,
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 14.w,
-                                vertical: 6.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: isSelected
-                                    ? Colours.primary.withOpacity(0.15)
-                                    : Colors.white,
-                                borderRadius: BorderRadius.circular(10.r),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? Colours.primary
-                                      : Colours.blue7BD3FC.withOpacity(0.25),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    gamesAndToysIcons[index],
-                                    size: 20.sp,
-                                    color: isSelected
-                                        ? Colours.primary
-                                        : Colours.black6C6C6A,
-                                  ),
-                                  8.widthBox,
-                                  Text(
-                                    gamesAndToysNames[index],
-                                    style: TextStyle(
-                                      color: isSelected
-                                          ? Colours.primary
-                                          : Colours.black424242,
-                                      fontSize: 14.sp,
-                                      fontFamily: Fonts.sRegular,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                           );
                         }),
                       );
                     },
                   ),
-                  100.heightBox,
+
+                  120.heightBox,
                 ],
               ),
             ),
           ),
+
+          /// ---------------- BOTTOM BUTTONS ----------------
           Positioned(
-            // bottom: 20.h,
-            top: 850.h,
+            bottom: 26.h,
             left: 24.w,
             right: 24.w,
             child: Row(
@@ -303,14 +177,16 @@ class InstrestScreen extends StatelessWidget {
                   width: 176.w,
                   child: FilledButton(
                     style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colours.primary),
                       shape: WidgetStatePropertyAll(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadiusGeometry.circular(16.r),
+                          borderRadius: BorderRadius.circular(16.r),
                         ),
                       ),
-                      backgroundColor: WidgetStatePropertyAll(Colours.primary),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      goRouter.goNamed(Routes.homeScreen.name);
+                    },
                     child: Text(
                       "Save",
                       style: TextStyle(
@@ -321,18 +197,20 @@ class InstrestScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 SizedBox(
                   height: 58.h,
                   width: 176.w,
                   child: FilledButton(
                     style: ButtonStyle(
+                      backgroundColor: const WidgetStatePropertyAll(
+                        Colors.white,
+                      ),
                       shape: WidgetStatePropertyAll(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadiusGeometry.circular(16.r),
+                          borderRadius: BorderRadius.circular(16.r),
                         ),
                       ),
-                      backgroundColor: WidgetStatePropertyAll(Colors.white),
                     ),
                     onPressed: () {},
                     child: Text(
