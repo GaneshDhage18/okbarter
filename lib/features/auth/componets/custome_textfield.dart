@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ok_barter/core/const/colours.dart';
 import 'package:ok_barter/core/const/fonts.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
-import 'package:ok_barter/fetures/auth/componets/validators.dart';
+
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({

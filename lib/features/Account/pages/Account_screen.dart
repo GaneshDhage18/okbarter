@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ok_barter/core/const/colours.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
 import 'package:ok_barter/core/routes/router.dart';
-import 'package:ok_barter/fetures/Account/components/custome_tile.dart';
+import 'package:ok_barter/features/Account/components/custome_tile.dart';
+
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});

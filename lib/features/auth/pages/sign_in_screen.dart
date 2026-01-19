@@ -6,9 +6,10 @@ import 'package:ok_barter/core/const/colours.dart';
 import 'package:ok_barter/core/const/fonts.dart';
 import 'package:ok_barter/core/const/urls.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
-import 'package:ok_barter/fetures/auth/bloc/auth_bloc.dart';
-import 'package:ok_barter/fetures/auth/componets/custome_textfield.dart';
-import 'package:ok_barter/fetures/auth/componets/validators.dart';
+import 'package:ok_barter/features/auth/bloc/auth_bloc.dart';
+import 'package:ok_barter/features/auth/componets/custome_textfield.dart';
+import 'package:ok_barter/features/auth/componets/validators.dart';
+
 
 class SignInScreen extends StatelessWidget {
   final GlobalKey<FormState> formkey = GlobalKey();

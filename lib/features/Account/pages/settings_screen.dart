@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
 import 'package:ok_barter/core/routes/router.dart';
-import 'package:ok_barter/fetures/Account/components/alert_dialoge.dart';
-import 'package:ok_barter/fetures/Account/components/custome_tile.dart';
+import 'package:ok_barter/features/Account/components/alert_dialoge.dart';
+import 'package:ok_barter/features/Account/components/custome_tile.dart';
+
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

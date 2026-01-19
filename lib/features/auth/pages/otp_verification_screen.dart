@@ -5,9 +5,9 @@ import 'package:ok_barter/core/const/colours.dart';
 import 'package:ok_barter/core/const/fonts.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
 import 'package:ok_barter/core/routes/router.dart';
-import 'package:ok_barter/fetures/auth/bloc/auth_bloc.dart';
-import 'package:ok_barter/fetures/auth/componets/email_mask.dart';
-import 'package:ok_barter/fetures/auth/componets/pin_theme.dart';
+import 'package:ok_barter/features/auth/bloc/auth_bloc.dart';
+import 'package:ok_barter/features/auth/componets/email_mask.dart';
+import 'package:ok_barter/features/auth/componets/pin_theme.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpVerificationScreen extends StatefulWidget {

@@ -5,7 +5,8 @@ import 'package:ok_barter/core/const/colours.dart';
 import 'package:ok_barter/core/const/fonts.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
 import 'package:ok_barter/core/routes/router.dart';
-import 'package:ok_barter/fetures/auth/models/landing_screen_model.dart';
+import 'package:ok_barter/features/auth/models/landing_screen_model.dart';
+
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});

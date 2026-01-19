@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ok_barter/core/routes/router.dart';
-import 'package:ok_barter/fetures/auth/bloc/auth_bloc.dart';
+import 'package:ok_barter/features/auth/bloc/auth_bloc.dart';
+
 
 void main() {
   runApp(const OkBarter());

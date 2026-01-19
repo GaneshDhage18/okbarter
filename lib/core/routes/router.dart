@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ok_barter/fetures/Account/pages/Account_screen.dart';
-import 'package:ok_barter/fetures/Account/pages/help_and_support_screen.dart';
-import 'package:ok_barter/fetures/Account/pages/settings_screen.dart';
-import 'package:ok_barter/fetures/Account/pages/wishlis_screen.dart';
-import 'package:ok_barter/fetures/auth/pages/landing_screen.dart';
-import 'package:ok_barter/fetures/auth/pages/otp_verification_screen.dart';
-import 'package:ok_barter/fetures/auth/pages/sign_in_screen.dart';
-import 'package:ok_barter/fetures/auth/pages/signup_screen.dart';
-import 'package:ok_barter/fetures/auth/pages/splash_screen.dart';
-import 'package:ok_barter/fetures/bottomNavigationBar/pages/bottomNavigationBar_screen.dart';
-import 'package:ok_barter/fetures/bottomNavigationBar/pages/home_screen.dart';
-import 'package:ok_barter/fetures/bottomNavigationBar/pages/profile_screen.dart';
+import 'package:ok_barter/features/Account/pages/Account_screen.dart';
+import 'package:ok_barter/features/Account/pages/help_and_support_screen.dart';
+import 'package:ok_barter/features/Account/pages/settings_screen.dart';
+import 'package:ok_barter/features/Account/pages/wishlis_screen.dart';
+import 'package:ok_barter/features/auth/pages/landing_screen.dart';
+import 'package:ok_barter/features/auth/pages/otp_verification_screen.dart';
+import 'package:ok_barter/features/auth/pages/sign_in_screen.dart';
+import 'package:ok_barter/features/auth/pages/signup_screen.dart';
+import 'package:ok_barter/features/auth/pages/splash_screen.dart';
+import 'package:ok_barter/features/bottomNavigationBar/pages/bottomNavigationBar_screen.dart';
+import 'package:ok_barter/features/bottomNavigationBar/pages/home_screen.dart';
+import 'package:ok_barter/features/bottomNavigationBar/pages/profile_screen.dart';
 
 enum Routes {
   splashScreen,
