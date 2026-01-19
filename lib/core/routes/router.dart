@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ok_barter/fetures/chat/pages/chat_screen.dart';
-import 'package:ok_barter/fetures/location/pages/confirm_location_screen.dart';
-import 'package:ok_barter/fetures/location/pages/location_screen.dart';
-import 'package:ok_barter/fetures/messages/bloc/messages_bloc.dart';
-import 'package:ok_barter/fetures/messages/pages/messages_screen.dart';
+import 'package:ok_barter/features/chat/pages/chat_screen.dart';
+import 'package:ok_barter/features/location/pages/confirm_location_screen.dart';
+import 'package:ok_barter/features/location/pages/location_screen.dart';
+import 'package:ok_barter/features/messages/bloc/messages_bloc.dart';
+import 'package:ok_barter/features/messages/pages/messages_screen.dart';
 
 enum Routes {
   splashScreen,

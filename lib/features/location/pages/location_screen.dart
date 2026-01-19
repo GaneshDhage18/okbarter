@@ -5,8 +5,8 @@ import 'package:ok_barter/core/const/fonts.dart';
 import 'package:ok_barter/core/const/urls.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
 import 'package:ok_barter/core/routes/router.dart';
-import 'package:ok_barter/fetures/location/components/check_location_permission.dart';
-import 'package:ok_barter/fetures/location/components/filled_button.dart';
+import 'package:ok_barter/features/location/components/check_location_permission.dart';
+import 'package:ok_barter/features/location/components/filled_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationScreen extends StatelessWidget {

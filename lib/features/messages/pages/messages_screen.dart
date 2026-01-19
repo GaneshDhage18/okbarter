@@ -9,8 +9,8 @@ import 'package:ok_barter/core/const/list.dart';
 import 'package:ok_barter/core/const/urls.dart';
 import 'package:ok_barter/core/extensions/sizedbox_extension.dart';
 import 'package:ok_barter/core/routes/router.dart';
-import 'package:ok_barter/fetures/messages/bloc/messages_bloc.dart';
-import 'package:ok_barter/fetures/messages/components/custom_app_bar.dart';
+import 'package:ok_barter/features/messages/bloc/messages_bloc.dart';
+import 'package:ok_barter/features/messages/components/custom_app_bar.dart';
 
 class MessagesScreen extends StatelessWidget {
   const MessagesScreen({super.key});
