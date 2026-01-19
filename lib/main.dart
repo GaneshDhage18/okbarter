@@ -11,10 +11,12 @@ class OkBarter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(designSize: Size(300, 200),
-      child: MaterialApp.router(routerConfig: goRouter,
-      
-      
+    return ScreenUtilInit(
+      designSize: const Size(428, 926),
+      splitScreenMode: true,
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: goRouter,
       ),
     );
   }

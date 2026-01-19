@@ -3,4 +3,5 @@ class Fonts {
   static String sMedium = "Medium";
   static String sRegular = "Regular";
   static String sSemiBold = "SemiBold";
+  static String slight = "light";
 }

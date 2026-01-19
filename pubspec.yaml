@@ -2,7 +2,7 @@ name: ok_barter
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -40,6 +40,9 @@ dependencies:
   flutter_bloc: ^9.1.1
   equatable: ^2.0.8
   flutter_screenutil: ^5.9.3
+  image_picker: ^1.2.1
+  logger: ^2.6.2
+  lottie: ^3.3.2
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +60,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -69,6 +71,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/fonts/
+    - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -85,18 +88,22 @@ flutter:
     - family: Bold
       fonts:
         - asset: assets/fonts/Sora-Bold.ttf
-   
+
     - family: Medium
       fonts:
         - asset: assets/fonts/Sora-Medium.ttf
-    
+
     - family: Regular
       fonts:
         - asset: assets/fonts/Sora-Regular.ttf
-   
+
     - family: SemiBold
       fonts:
         - asset: assets/fonts/Sora-SemiBold.ttf
-  
+
+    - family: light
+      fonts:
+        - asset: assets/fonts/Sora-Light.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
