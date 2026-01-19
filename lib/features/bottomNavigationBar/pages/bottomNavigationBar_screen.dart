@@ -118,7 +118,9 @@ class BottomNavigationBarScreen extends StatelessWidget {
                       height: isSelected ? 27.h : 24.h,
                       width: isSelected ? 27.h : 24.h,
 
-                      color: isSelected ? Colours.primary : Colors.grey,
+                      color: isSelected
+                          ? Colours.primary
+                          : Colors.grey.shade100,
                     ),
                   ),
                 );
