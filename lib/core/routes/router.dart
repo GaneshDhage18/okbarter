@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:ok_barter/fetures/auth/pages/auth_screen.dart';
+import 'package:ok_barter/features/auth/pages/auth_screen.dart';
 
 enum Routes { splashScreen }
 
